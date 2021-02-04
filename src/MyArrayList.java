@@ -1,71 +1,80 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.omg.PortableServer.POA;
 import java.util.Collection;
+import java.util.Iterator;
 
+public class MyArrayList<T> implements List<T> {
 
-    public  class  MyArrayList  implements  List  {
-        public static void main(String[] args) {
-             MyArrayList A =  new MyArrayList() ;
-              A.add(5 , 4 );
+    private final int initSize = 16; //Инициализировали размер
+    private Object[] array; //Объявили массив
+    private int pointer = 0;//Номер последнего заполненного элеметна
+    private int index = 0;
+
+    public MyArrayList() {
+        array = new Object[initSize];
+        //Глобально создали пустой массив с размером initSize
+    }
+
+    public void add(T t) {
+        if (pointer != array.length - 1) {
+            System.out.println(array[pointer] = t);
+        } else {
+            resize();
+            System.out.println(array[pointer] = t);
         }
+        pointer++;
 
-     private  final int  intSize = 5;
-     private  int  [] array;
-     private int pointer = 0;
-      public  MyArrayList () {
+    }
 
-           int [] array = new int [intSize];
+    public int size() {
+        return pointer;
+    }
 
-           array[0] = 23;
-           array[1] = 24;
-           array[2] = 10;
-           array[3] = 15;
-           array [4] =17;
-      }
-         public int size() {
-              return  0;
-         }
+    public boolean contains(T t) {
+        for (int i = 0; i < pointer; i++) {
+            if (array[i] == t) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-         @Override
-         public boolean isEmpty() {
-             return false;
-         }
+    public void remove(T t) {
+        int x = -1;
+        for (int i = 0; i < pointer; i++) {
+            if (array[i] == (t)) {
+                x = i;
+                break;
+            }
+        }
+        if (x >= 0) {
+            for (int i = x; i < pointer; i++) {
+                array[i] = array[i + 1];
+            }
+            array[pointer] = null;
+            pointer--;
+        }
+    }
 
-         @Override
-         public boolean contains(int  t) {
-             return false;
-         }
+    public boolean isEmpty() {
+        return pointer == 0;
+    }
 
-         @Override
-         public void add(int  t , int index ) {
-           int  [] newArray = new  int  [array.length+1 ];
-          newArray[ index  ] = t;
-             for (int  i = 0;  i <   index ;  i++)
-                 newArray[i] = array[i];
+    private void resize() {
+        Object[] newArray = new Object[array.length * 3 / 2 + 1];
+        System.arraycopy(array, 0, newArray, 0, pointer);
+    }
 
-             for (int i = index ; i < array.length; i++)
-                 newArray[i+1] = array[i];
-             array = newArray ;
+    public static void main(String[] args) {
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.add("1");
+        myArrayList.add("2");
+        myArrayList.add("3");
+        myArrayList.add("4");
+        System.out.println(myArrayList.contains("2"));
+        System.out.println(myArrayList.size());
+        System.out.println(myArrayList.isEmpty());
+        myArrayList.remove("3");
+    }
+}
 
-             for (int  i = 0;  i < newArray.length ; i++) {
-                 System.out.println(newArray[i]);
-             }
-
-         }
-
-         @Override
-         public void remove(int  t) {
-
-         }
-
-         @Override
-         public void resize(int length) {
-
-         }
-     }
-
-
-
- // for (int  i = index ;  i < array.length ;  i++)
- //       newArray [i+1 ] = array[i];
-  //      array = newArray;
+//  [1][2][null][4][5][6]

@@ -1,13 +1,7 @@
-public interface List  {
-    public int size();
-
-    public boolean isEmpty();
-
-    public boolean contains( int t);
-
-    public void add(int  t , int index  );
-
-    public void remove(int  t);
-
-    void resize(int length);
+public  interface List <T>   {
+      public  int size();
+     public  boolean contains(T t );
+     public void add(T t );
+     public  void remove( T t  );
+     public  boolean isEmpty();
 }
