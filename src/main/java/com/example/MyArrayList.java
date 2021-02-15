@@ -1,9 +1,6 @@
-import org.omg.PortableServer.POA;
-import java.util.Collection;
-import java.util.Iterator;
+package com.example;
 
-public class MyArrayList<T> implements List<T> {
-
+public class MyArrayList<T> implements List<T> { //<T> - джинерик, пока не определим какой тип данных будем класть
     private final int initSize = 16; //Инициализировали размер
     private Object[] array; //Объявили массив
     private int pointer = 0;//Номер последнего заполненного элеметна
@@ -41,7 +38,7 @@ public class MyArrayList<T> implements List<T> {
     public void remove(T t) {
         int x = -1;
         for (int i = 0; i < pointer; i++) {
-            if (array[i] == (t)) {
+            if (array[i] == t) {
                 x = i;
                 break;
             }
@@ -64,17 +61,6 @@ public class MyArrayList<T> implements List<T> {
         System.arraycopy(array, 0, newArray, 0, pointer);
     }
 
-    public static void main(String[] args) {
-        MyArrayList myArrayList = new MyArrayList();
-        myArrayList.add("1");
-        myArrayList.add("2");
-        myArrayList.add("3");
-        myArrayList.add("4");
-        System.out.println(myArrayList.contains("2"));
-        System.out.println(myArrayList.size());
-        System.out.println(myArrayList.isEmpty());
-        myArrayList.remove("3");
-    }
 }
 
 //  [1][2][null][4][5][6]

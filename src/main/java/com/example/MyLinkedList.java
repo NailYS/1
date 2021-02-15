@@ -1,12 +1,8 @@
-import javax.jws.soap.SOAPBinding;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
+package com.example;
 
 public class MyLinkedList<T> implements List<T> {
 
-    public class Node<T> {
+    static class Node<T> {
         T value; //переменная которая будет хранить object
         Node<T> next; //ccылка на следующий элемент
         Node<T> prevous; //ccылка на предыдущий элемент
@@ -83,17 +79,4 @@ public class MyLinkedList<T> implements List<T> {
         return size == 0;
     }
 
-    public static void main(String[] args) {
-        MyLinkedList<String> myLinkedList = new MyLinkedList();
-        myLinkedList.add("1");
-        myLinkedList.add("w");
-        myLinkedList.add("4");
-        myLinkedList.add("w");
-        myLinkedList.add("8");
-        myLinkedList.getList();
-        System.out.println(myLinkedList.contains("w"));
-        System.out.println(myLinkedList.size());
-        myLinkedList.remove("4");
-        myLinkedList.getList();
-    }
 }
