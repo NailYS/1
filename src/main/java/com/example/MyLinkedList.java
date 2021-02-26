@@ -6,7 +6,6 @@ public class MyLinkedList<T> implements List<T> {
         T value; //переменная которая будет хранить object
         Node<T> next; //ccылка на следующий элемент
         Node<T> prevous; //ccылка на предыдущий элемент
-        Node<T> first;
     }
 
     Node<T> temp;
@@ -39,7 +38,6 @@ public class MyLinkedList<T> implements List<T> {
             System.out.println(temp.value);
             temp = temp.next;
         }
-        System.out.println();
     }
 
     @Override

@@ -27,6 +27,7 @@ public class MyArrayList<T> implements List<T> { //<T> - джинерик, по�
     }
 
     public boolean contains(T t) {
+
         for (int i = 0; i < pointer; i++) {
             if (array[i] == t) {
                 return true;
